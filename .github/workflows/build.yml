@@ -1,0 +1,91 @@
+name: Build SwapNDie
+
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch: {}
+
+jobs:
+  # ---------- Server plugin (Paper) — one job per target version ----------
+  build-plugin-26-1-2:
+    name: Plugin (26.1.2+)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
+        with: { java-version: '25', distribution: 'temurin', cache: maven }
+      - run: mvn -B -f modules/modern-26.1.2/pom.xml clean package
+      - uses: actions/upload-artifact@v4
+        with:
+          name: SwapNDie-26.1.2-plugin
+          path: modules/modern-26.1.2/target/SwapNDie-26.1.2.jar
+
+  build-plugin-1-21-4:
+    name: Plugin (1.21.4)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
+        with: { java-version: '21', distribution: 'temurin', cache: maven }
+      - run: mvn -B -f modules/legacy-1.21.4/pom.xml clean package
+      - uses: actions/upload-artifact@v4
+        with:
+          name: SwapNDie-1.21.4-plugin
+          path: modules/legacy-1.21.4/target/SwapNDie-1.21.4.jar
+
+  build-plugin-1-20-6:
+    name: Plugin (1.20.6)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
+        with: { java-version: '17', distribution: 'temurin', cache: maven }
+      - run: mvn -B -f modules/legacy-1.20.6/pom.xml clean package
+      - uses: actions/upload-artifact@v4
+        with:
+          name: SwapNDie-1.20.6-plugin
+          path: modules/legacy-1.20.6/target/SwapNDie-1.20.6.jar
+
+  # ---------- Client mod (Fabric) — one job per target version ----------
+  build-mod-26-1-2:
+    name: Client mod (26.1.2+)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
+        with: { java-version: '25', distribution: 'temurin' }
+      - uses: gradle/actions/setup-gradle@v4
+      - run: gradle -p mod/fabric-26.1.2 build --no-daemon
+      - uses: actions/upload-artifact@v4
+        with:
+          name: SwapNDie-26.1.2-clientmod
+          path: mod/fabric-26.1.2/build/libs/*.jar
+
+  build-mod-1-21-4:
+    name: Client mod (1.21.4)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
+        with: { java-version: '21', distribution: 'temurin' }
+      - uses: gradle/actions/setup-gradle@v4
+      - run: gradle -p mod/fabric-1.21.4 build --no-daemon
+      - uses: actions/upload-artifact@v4
+        with:
+          name: SwapNDie-1.21.4-clientmod
+          path: mod/fabric-1.21.4/build/libs/*.jar
+
+  build-mod-1-20-6:
+    name: Client mod (1.20.6)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
+        with: { java-version: '17', distribution: 'temurin' }
+      - uses: gradle/actions/setup-gradle@v4
+      - run: gradle -p mod/fabric-1.20.6 build --no-daemon
+      - uses: actions/upload-artifact@v4
+        with:
+          name: SwapNDie-1.20.6-clientmod
+          path: mod/fabric-1.20.6/build/libs/*.jar
+          
