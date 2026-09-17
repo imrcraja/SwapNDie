@@ -1,0 +1,24 @@
+name: SwapNDie
+version: '1.0.0'
+main: com.rcraja.swapndie.SwapNDie
+api-version: '26.1'
+author: RC RAJA GAMER 2.0
+description: Trap & Swap deathswap-style PvP minigame — build a trap, swap opponents in, survive.
+website: https://youtube.com/@RCRAJAGAMER2.0
+
+softdepend: [WeaponMechanics, ItemsAdder, Oraxen, MythicMobs, TurboVehicles, InfiniteVehicles, Ghostblocks, ProtocolLib]
+
+commands:
+  swapndie:
+    description: Main SwapNDie command
+    usage: /swapndie help
+    aliases: [snd, trapswap]
+
+permissions:
+  swapndie.admin:
+    description: Full admin access to SwapNDie (start, config, tp, reset)
+    default: op
+  swapndie.play:
+    description: Allows starting/building/joining SwapNDie games
+    default: true
+
