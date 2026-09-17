@@ -1,0 +1,69 @@
+# ================================
+#     SwapNDie - Config
+#  by RC RAJA GAMER 2.0
+# ================================
+
+arena:
+  # radius (in blocks) that gets flattened around the first teleport point
+  flatten-radius: 20
+  # Y level the flattened platform sits on (relative platform, not world Y — set to -1 to use the player's current Y)
+  platform-y: -1
+  # material used for the flattened platform floor
+  platform-material: SMOOTH_STONE
+  # how far apart (blocks) each new game slot (game1, game2, game3...) is placed from the last one, so arenas never overlap
+  arena-spacing: 500
+  # build height above the platform that gets cleared to air
+  clear-height: 40
+
+game:
+  # seconds the trap-builder gets before the swap happens
+  build-timer-seconds: 300
+  # lives the swapped-in player has before they lose
+  lives: 3
+  # block radius outside of which players can't break/place blocks while a round is active
+  lock-build-outside-arena: true
+
+# native SwapNDie Blaster (no WeaponMechanics/other gun plugin needed)
+weapons:
+  gun-range: 40.0
+  gun-damage: 6.0
+  gun-max-ammo: 32
+
+# native Trap Guardian boss mob (no MythicMobs needed)
+boss:
+  health: 60.0
+  attack-damage: 10.0
+
+messages:
+  win-title: "<green><bold>YOU WIN!"
+  lose-title: "<red><bold>YOU DIED!"
+  countdown-title: "<red><bold>%time%"
+  prefix: "<red><bold>SwapNDie</bold></red> <gray>»</gray> "
+
+# Custom item display names (used to detect right-click actions)
+items:
+  spawn-setter-name: "<red>Trap Spawn Setter"
+  win-trigger-name: "<green>Victory Trigger"
+
+# Soft-integration: OPTIONAL, all disabled by default. SwapNDie already has its
+# own native gun/car/boss/ghost-block (see the catalog command) so you do NOT
+# need any of this. Only turn one on if you specifically want a dedicated
+# plugin's version instead. NOTE: ItemsAdder is a PAID plugin — leave it
+# disabled unless you've actually bought it; everything else on this list is free.
+integrations:
+  weaponmechanics:
+    enabled: false
+    give-command: "wm give %player% %arg%"
+  vehicles:
+    enabled: false
+    give-command: "vehicle give %player% %arg%"
+  mythicmobs:
+    enabled: false
+    spawn-command: "mm mobs spawn %arg% 1 %world%,%x%,%y%,%z%"
+  itemsadder:
+    enabled: false
+    give-command: "iadata give %player% %arg% 1"
+  ghostblocks:
+    enabled: false
+    give-command: "gb get %player%"
+    
