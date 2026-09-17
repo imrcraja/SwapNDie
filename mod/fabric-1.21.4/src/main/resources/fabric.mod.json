@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 1,
+  "id": "swapndie-client",
+  "version": "${version}",
+  "name": "SwapNDie Client",
+  "description": "Client-side creative catalog for the SwapNDie server plugin. Requires no server-side mod — pairs with SwapNDie-1.21.4.jar (Paper plugin).",
+  "authors": ["RC RAJA GAMER 2.0"],
+  "contact": {},
+  "license": "MIT",
+  "environment": "client",
+  "entrypoints": {
+    "client": [
+      "com.rcraja.swapndie.client.SwapNDieClientMod"
+    ]
+  },
+  "depends": {
+    "fabricloader": ">=0.15.0",
+    "minecraft": "1.21.x",
+    "java": ">=21",
+    "fabric-api": "*"
+  }
+}
